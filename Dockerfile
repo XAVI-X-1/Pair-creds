@@ -1,8 +1,10 @@
 FROM node:lts-buster
 
-COPY package.json yarn.lock ./
+WORKDIR /app
 
-RUN yarn install
+COPY package.json ./
+
+RUN npm cache clean --force && npm install
 
 COPY . .
 
