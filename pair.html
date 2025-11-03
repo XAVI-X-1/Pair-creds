@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALONE BOY GOD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #4998FF;
+      --primary-light: #BFF0FA;
+      --bg: #161b22;
+      --box: #22262f;
+      --input-bg: #252a33;
+      --text: #ececec;
+      --muted: #b2bbc6;
+      --accent: #70e1fc;
+      --danger: #ff5e5e;
+      --success: #77f9a6;
+      --shadow: 0 4px 32px rgba(0, 0, 0, 0.32);
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100vw;
+      background: var(--bg);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100vw;
+      transition: background 0.28s;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100vw;
+      min-height: 100vh;
+      justify-content: center;
+    }
+
+    .box {
+      background: rgba(35, 42, 52, 0.98);
+      /* Slight glass effect */
+      border-radius: 18px;
+      box-shadow: 0 8px 42px 2px #07163455, 0 1.5px 7px 0 #417cff35;
+      padding: 46px 38px 42px 38px;
+      width: 450px;
+      max-width: 97vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 1;
+      /* No white fade */
+      border: 1.8px solid #335ecb33;
+      /* Subtle blue border */
+      backdrop-filter: blur(4px);
+      transition:
+        box-shadow 0.25s cubic-bezier(.46, .03, .52, .96),
+        border-color 0.23s,
+        background 0.24s;
+    }
+
+    .box:hover,
+    .box:focus-within {
+      box-shadow: 0 18px 56px 6px #2d89ff40, 0 8px 26px #10162930;
+      border-color: #4998ff66;
+      background: rgba(42, 55, 77, 0.99);
+    }
+
+    .fa-user {
+      color: var(--primary);
+      background: #162741;
+      padding: 18px;
+      border-radius: 50%;
+      font-size: 2.9em;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 16px 2px #234a8315;
+    }
+
+    .box h3 {
+      font-size: 1.45em;
+      letter-spacing: 0.01em;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 10px 0 0.25em 0;
+      text-shadow: 0px 1px 8px #3337;
+    }
+
+    .box h6 {
+      font-size: 1.03em;
+      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 25px;
+      margin-top: 5px;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+    }
+
+    .input-container {
+      display: flex;
+      width: 100%;
+      max-width: 300px;
+      background: var(--input-bg);
+      border-radius: 1rem;
+      box-shadow: 0 2px 20px #0a0a0a17;
+      padding: 0.25rem;
+      gap: 0.25rem;
+    }
+
+    .input-container input {
+      border-radius: 0.8rem 0 0 0.8rem;
+      background: var(--input-bg);
+      color: var(--text);
+      padding: 1rem 1.2rem;
+      border: none;
+      border-left: 2.5px solid var(--primary);
+      font-size: 1.07rem;
+      transition: background 0.15s, box-shadow 0.21s, border 0.18s;
+      box-shadow: inset 0 0 5px #23325040;
+      flex: 1;
+    }
+
+    .input-container input:focus {
+      background: #202840;
+      outline: none;
+      border-left: 2.5px solid var(--accent);
+      box-shadow: 0 0 8px 1px #4998ff66;
+    }
+
+    .input-container button {
+      padding: 0 1.3rem;
+      background: linear-gradient(115deg, var(--primary-light) 0%, var(--primary) 75%);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #111B28;
+      border: none;
+      letter-spacing: 0.05em;
+      border-radius: 0 1rem 1rem 0;
+      cursor: pointer;
+      transition: background 0.19s, box-shadow 0.21s, color 0.13s;
+      font-size: 1em;
+      box-shadow: 0 1px 8px #313a6720;
+    }
+
+    .input-container button:hover,
+    .input-container button:focus {
+      background: linear-gradient(115deg, #53e1fb 0%, #407ee0 80%);
+      color: #212738;
+      box-shadow: 0 1px 16px #298cd735;
+      outline: none;
+    }
+
+    #pair {
+      margin-top: 25px;
+      width: 99%;
+      text-align: center;
+      min-height: 38px;
+    }
+
+    #copy {
+      cursor: pointer;
+      font-size: 1.18rem;
+      color: var(--danger);
+      transition: color 0.13s;
+      font-weight: bold;
+    }
+
+    #copy.copied {
+      color: var(--primary);
+      animation: pulse 0.75s;
+    }
+
+    /* Small device support */
+    @media (max-width: 530px) {
+      .box {
+        width: 98vw;
+        padding: 21px 5vw 24px 5vw;
+        border-radius: 11px;
+        font-size: 1em;
+      }
+
+      .input-container {
+        flex-direction: column;
+        border-radius: 1rem;
+        gap: 0.37rem;
+        width: 100%;
+        max-width: none;
+      }
+
+      .input-container input,
+      .input-container button {
+        border-radius: 0.8rem;
+        width: 100%;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        color: var(--primary);
+        text-shadow: 0 0 10px #4998ffbb;
+      }
+
+      70% {
+        color: #e5eaef;
+        text-shadow: 0 1px 12px #4998ff77;
+      }
+
+      100% {
+        color: var(--primary);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      <i class="fa fa-user"></i>
+      <h3>Link Your Phone Number</h3>
+      <h6>Please enter your WhatsApp number with the country code.</h6>
+      <label for="number" class="visually-hidden">Phone Number</label>
+      <div class="input-container">
+        <input type="number" id="number" placeholder="e.g., 917012984396" />
+        <button id="submit">Submit</button>
+      </div>
+      <div id="pair"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+  <script>
+    const resultContainer = document.getElementById("pair");
+    const submitButton = document.getElementById("submit");
+    const numberInput = document.getElementById("number");
+
+    // Attach copy handler to window for dynamic HTML
+    window.copyToClipboard = async function () {
+      const copyEl = document.getElementById("copy");
+      const codeMatch = copyEl.innerText.match(/CODE:\s?([\S]+)/i);
+      const codeText = codeMatch ? codeMatch[1] : "";
+
+      try {
+        await navigator.clipboard.writeText(codeText);
+        copyEl.innerText = "COPIED";
+        copyEl.classList.add("copied");
+        setTimeout(() => {
+          copyEl.innerHTML = `CODE: <span style="color:#fff;font-weight:bold">${codeText}</span>`;
+          copyEl.classList.remove("copied");
+        }, 1000);
+      } catch (e) {
+        copyEl.innerText = "COPY ERROR";
+        copyEl.style.color = "#ffbf00";
+      }
+    };
+
+    submitButton.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const inputValue = numberInput.value.replace(/[^0-9]/g, "");
+
+      if (!inputValue) {
+        resultContainer.innerHTML = '<p style="color:#fffa;font-weight:bold;">Please enter your phone number including country code.</p>';
+        return;
+      }
+      if (inputValue.length < 11) {
+        resultContainer.innerHTML = '<p style="color:#ffbf00;font-weight:bold;">Invalid number format. Please check and try again.</p>';
+        return;
+      }
+
+      // Format for display
+      const formattedNumber = "+" + inputValue.replace(/(.{3})(.{5})(.*)/, "$1 $2 $3");
+      numberInput.type = "text";
+      numberInput.value = formattedNumber;
+      numberInput.style = "color:#feffff;font-size:1.13rem;letter-spacing:0.02em;";
+
+      resultContainer.innerHTML = '<p style="color:#b7e4ff;font-weight:600;">Processing request... please wait.</p>';
+
+      try {
+        const { data } = await axios(`/code?number=${inputValue}`);
+        const code = data.code || "Unavailable";
+        resultContainer.innerHTML = `
+          <p id="copy" onclick="copyToClipboard()" style="font-weight:bold;cursor:pointer;">
+            CODE: <span style="color:#fff;font-weight:bold;">${code}</span>
+          </p>`;
+      } catch (error) {
+        resultContainer.innerHTML = '<p style="color:#ff6e6e;font-weight:bold;">An error occurred. Please try again later.</p>';
+      }
+    });
+  </script>
+</body>
+
+</html>
