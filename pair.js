@@ -64,7 +64,7 @@ router.get('/', async (req, res) => {
                         document: jsonData,
                         mimetype: 'application/json',
                         fileName: 'creds.json',
-                        caption: 'ALONE BOY THE GOD OF ALL'
+                        caption: 'XAVI, DINA GOD OF ALL'
                     });
                     await delay(100);
                     await session.ws.close();
